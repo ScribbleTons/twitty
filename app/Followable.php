@@ -15,25 +15,13 @@ trait Followable
     }
     public function following(User $user){
 
-        return $this->follows()->pluck('id')->contains($user->id);
+         return ($this->follows()->pluck('following_user_id')->contains($user->id));
         
     }
     public function toggleFollow(User $user){
         
-         return $this->follows()->toggle($user);
+        return $this->follows()->toggle($user);
     }
-
-
-    
-    // public function isFollowing(User $user)
-    // {
-    //     return $this->follows()->where('following_user_id', $user->id)->exists();
-    // }
-
-    // public function isNotFollowing(User $user)
-    // {
-    //     return $this->follows()->where('following_user_id', $user->id)->doesntExist();
-    // }
     
 }
 ?>
